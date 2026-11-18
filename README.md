@@ -153,3 +153,36 @@ Open `http://127.0.0.1:5000`. Upload a satellite image, choose Roads or Building
 **SpaceNet:** Van Etten, A., Lindenbaum, D., & Bacastow, T. M. (2018). *SpaceNet: A Remote Sensing Dataset and Challenge Series*. arXiv:1807.01232.
 
 Please review dataset-specific terms before using or redistributing data. The ZIP contains code only, not the datasets.
+## 10. Download Pretrained Models
+
+TerraVision provides four pretrained deep learning models for satellite image building and road extraction.
+
+You can download the trained model checkpoints from our GitHub Release:
+
+**[Download All Pretrained Models – TerraVision v1.0.0](https://github.com/ursram-08/TerraVision-Satellite-Extraction/releases/tag/v1.0.0)**
+
+### Available Models
+
+| Model | Task | Architecture |
+|---|---|---|
+| best_unet.pth | Building extraction | U-Net |
+| best_attention_unet.pth | Building extraction | Attention U-Net |
+| best_road_unet.pth | Road extraction | U-Net |
+| best_road_attention_unet.pth | Road extraction | Attention U-Net |
+
+### Installation of Pretrained Models
+
+1. Open the GitHub Release link above.
+2. Download all four `.pth` files.
+3. Open the `satellite_extraction_project` directory.
+4. Locate or create a folder named `checkpoints`.
+5. Place all four downloaded model files inside the `checkpoints` folder.
+6. Start the Flask application using:
+
+```powershell
+python app.py
+```
+
+The application can then use the pretrained models for building and road extraction without requiring users to train them again.
+
+**Note:** Dataset files and trained model weights are maintained separately from the source-code repository to keep the repository lightweight.
