@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TerraVision | Satellite Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+<nav class="nav"><a class="brand" href="#"><span class="brand-mark">◈</span><span>TERRA<span class="accent">VISION</span></span></a><div class="nav-links"><a class="active" href="#workspace">Workspace</a><a href="#workflow">Methodology</a><a href="#about">About</a></div><div class="status"><i></i><span id="api-status">Checking API</span></div></nav>
+<main>
+<section class="hero">
+<div class="eyebrow"><span></span> GEOSPATIAL AI · RESEARCH WORKSPACE</div>
+<h1>See the ground.<br><em>Understand the map.</em></h1>
+<p class="hero-copy">Intelligent extraction of roads and building footprints from high-resolution satellite imagery, powered by deep learning.</p>
+<div class="hero-tags"><span>01 / U-NET</span><span>02 / ATTENTION U-NET</span><span>03 / MORPHOLOGY</span></div>
+<div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-coordinate">13°04' N &nbsp; 77°35' E<br><small>EARTH OBSERVATION SYSTEM</small></div>
+</section>
+<section class="workspace" id="workspace">
+<div class="section-heading"><div><div class="eyebrow">ANALYSIS CONSOLE / 01</div><h2>Extraction workspace</h2></div><span class="section-note">UPLOAD · CONFIGURE · ANALYZE</span></div>
+<div class="console">
+<div class="controls">
+<div class="step-label">01 <span>INPUT IMAGERY</span></div>
+<label class="dropzone" id="dropzone" for="image-input"><input type="file" id="image-input" accept=".png,.jpg,.jpeg,.tif,.tiff" hidden><div class="upload-icon">↑</div><strong>Drop satellite image here</strong><span>or browse files · PNG, JPG, TIFF</span><small id="file-name">MAXIMUM FILE SIZE 20 MB</small></label>
+<div class="step-label">02 <span>EXTRACTION TARGET</span></div>
+<div class="choice-row"><button class="choice selected" data-task="roads"><span>⌁</span><b>Road network</b><small>Linear infrastructure</small></button><button class="choice" data-task="buildings"><span>▦</span><b>Buildings</b><small>Built-up footprints</small></button></div>
+<div class="step-label">03 <span>MODEL CONFIGURATION</span></div>
+<select id="model-select"><option value="classical">Classical morphology baseline</option><option value="unet">U-Net</option><option value="attention_unet">Attention U-Net</option></select>
+<button class="run-button" id="run-button" disabled><span>Run extraction</span><b>↗</b></button>
+<p class="fine-print">Neural models require trained checkpoints. Classical baseline is available immediately.</p>
+</div>
+<div class="results">
+<div class="result-top"><div><div class="step-label">OUTPUT / VISUAL INSPECTION</div><h3>Analysis results</h3></div><span class="result-badge" id="result-state">AWAITING INPUT</span></div>
+<div class="preview-grid">
+<div class="preview-card"><div class="preview-title">SOURCE IMAGE <span>01</span></div><div class="preview-image" id="source-preview"><div class="placeholder"><span>▧</span><p>Satellite imagery preview</p></div></div></div>
+<div class="preview-card"><div class="preview-title">SEGMENTATION MASK <span>02</span></div><div class="preview-image" id="mask-preview"><div class="placeholder"><span>◩</span><p>Predicted feature mask</p></div></div></div>
+</div>
+<div class="preview-card overlay-card"><div class="preview-title">FEATURE OVERLAY <span>03</span></div><div class="preview-image overlay-preview" id="overlay-preview"><div class="placeholder"><span>⌖</span><p>Detected features overlaid on source</p></div></div></div>
+<div class="result-meta"><div><small>METHOD</small><b id="method-value">—</b></div><div><small>TARGET</small><b id="target-value">—</b></div><a id="download-mask" class="download disabled" href="#" download>Download mask ↓</a></div>
+</div>
+</div>
+</section>
+<section class="methodology" id="workflow"><div class="eyebrow">RESEARCH PIPELINE / 02</div><h2>Three approaches.<br><em>One measurable outcome.</em></h2><div class="method-grid"><article><span>01</span><h3>U-Net</h3><p>Encoder-decoder segmentation architecture with skip connections for spatial detail preservation.</p><small>BASELINE DEEP LEARNING</small></article><article class="featured"><span>02</span><h3>Attention U-Net</h3><p>Attention gates guide the decoder toward salient structures, with auxiliary deep-supervision losses.</p><small>PRIMARY RESEARCH MODEL</small></article><article><span>03</span><h3>Morphological pipeline</h3><p>Classical image processing baseline using adaptive thresholding and morphological refinement.</p><small>NON-LEARNED BASELINE</small></article></div></section>
+<section class="metrics-strip"><div><b>IoU</b><span>Intersection over Union</span></div><div><b>Dice</b><span>F1 segmentation score</span></div><div><b>Precision</b><span>Positive prediction quality</span></div><div><b>Recall</b><span>Feature coverage</span></div></section>
+<section class="about" id="about"><div><div class="eyebrow">PROJECT INFORMATION / 03</div><h2>Mapping the world,<br><em>one pixel at a time.</em></h2></div><p>TerraVision is an academic research prototype for satellite-image semantic segmentation. Road experiments use the DeepGlobe Road Extraction dataset; building experiments use SpaceNet building-footprint annotations. Models are evaluated on labelled held-out data before their results are reported.</p></section>
+</main>
+<footer><span>◈ TERRAVISION</span><span>SATELLITE IMAGE SEGMENTATION · RESEARCH PROTOTYPE</span><span>© 2026</span></footer>
+<div class="toast" id="toast"></div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body></html>
